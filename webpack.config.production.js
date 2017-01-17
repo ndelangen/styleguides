@@ -15,7 +15,6 @@ module.exports = {
     publicPath: "/dist/"
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     // new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
@@ -29,25 +28,35 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [{
+    rules: [{
       test: /\.md$/,
-      loader: "html-loader!markdown-loader?gfm=false"
+      use: [
+        { loader: 'html-loader' },
+        { loader: 'markdown-loader', query: { gfm: false } },
+      ]
     }, {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       loader: "babel-loader",
-      query: {
-        presets: ['es2015', 'react']
-      }
     }, {
       test: /\.css$/,
-      loader: "style-loader!css-loader"
+      use: [
+        { loader: 'style-loader' },
+        { loader: 'raw-loader' },
+      ],
     }, {
       test: /\.(png|jpg|gif)$/,
-      loader: "url-loader?limit=8192"
+      loader: "url-loader",
+      query: {
+        limit: 8192
+      }
     }, {
       test: /\.svg$/,
-      loader: "url?limit=10000&mimetype=image/svg+xml"
+      loader: "url-loader",
+      query: {
+        limit: 10000,
+        mimetype: 'image/svg+xml'
+      }
     }]
   }
 };

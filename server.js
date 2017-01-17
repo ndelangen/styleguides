@@ -50,23 +50,31 @@ const server = new Promise((resolve, reject) => {
 
 const compilation = new Promise((resolve, reject) => {
   devMiddleware.waitUntilValid(results => {
-    resolve(results);
+    if (results.hasErrors()) {
+      reject(results);
+    } else {
+      resolve(results);
+    }
   })
 });
 
 const ready = Promise.all([server, compilation]);
 
 ready.then(([server, compilation]) => {
-  const address = `http://localhost:${serverPort}`;
+    const address = `http://localhost:${serverPort}`;
 
-  console.log(chalk.gray('---'));
-  console.log(`📦 `, chalk.cyan(`Compilation completed`));
-  console.log(compilation.toString({
-    colors: true,
-    chunks: false
-  }));
-  console.log(chalk.gray('---'));
-  console.log(`🌎 `, chalk.cyan(`Server listening at: ${chalk.bold(address)}`));
+    console.log(chalk.gray('---'));
+    console.log(`📦 `, chalk.cyan(`Compilation completed`));
+    console.log(compilation.toString({
+      colors: true,
+      chunks: false
+    }));
+    console.log(chalk.gray('---'));
+    console.log(`🌎 `, chalk.cyan(`Server listening at: ${chalk.bold(address)}`));
 
-  spawn('open', [address]);
-});
+    // spawn('open', [address]);
+  }, ([server, compilation]) => {
+    console.debug('📦 webpack ', [].join(compilation.errors).join(compilation.warnings));
+    console.debug('🌎 express ', server);
+    exit;
+  });
