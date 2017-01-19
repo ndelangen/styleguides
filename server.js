@@ -72,7 +72,7 @@ ready.then(([server, compilation]) => {
     console.log(chalk.gray('---'));
     console.log(`🌎 `, chalk.cyan(`Server listening at: ${chalk.bold(address)}`));
 
-    // spawn('open', [address]);
+    spawn('open', [address]);
   }, ([server, compilation]) => {
     console.debug('📦 webpack ', [].join(compilation.errors).join(compilation.warnings));
     console.debug('🌎 express ', server);

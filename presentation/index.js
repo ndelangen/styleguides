@@ -1,7 +1,6 @@
 // Import React
 import React from "react";
 
-
 // Import Spectacle Core tags
 import {
   Appear,
@@ -36,54 +35,86 @@ import Interactive from "../assets/interactive";
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
 
-
-const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+const load = (context) => {
+  return context.keys().reduce((result, key) => {
+    return Object.assign(
+      result,
+      {
+        [key.replace("./", "").replace(".", "_")]: context(key)
+      }
+    );
+  }, {});
 };
+const assets = load(require.context("../assets"));
+preloader(assets);
 
-preloader(images);
+console.log(assets);
 
 const theme = createTheme({
-  primary: "#FF4081"
+  primary: "#55F081"
 });
 
 export default class Presentation extends React.Component {
   render() {
     return (
       <Spectacle theme={theme}>
-        <Deck transition={["zoom", "slide"]} transitionDuration={500}>
+        <Deck transition={["zoom", "slide"]} transitionDuration={500} progress={"number"}>
           <Slide transition={["zoom"]} bgColor="primary">
             <Heading size={1} fit caps lineHeight={1} textColor="black">
-              Spectacle
+              Styleguides
             </Heading>
             <Heading size={1} fit caps>
-              A ReactJS Presentation Library
+              in a modern front-end
             </Heading>
             <Heading size={1} fit caps textColor="black">
-              Where You Can Write Your Decks In JSX
+              What role does it have and how to set it up
             </Heading>
-            <Link href="https://github.com/FormidableLabs/spectacle">
-              <Text bold caps textColor="tertiary">View on Github</Text>
-            </Link>
-            <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
           </Slide>
-          <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-            <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-            <Heading size={2} caps fit textColor="primary" textFont="primary">
-              Wait what?
-            </Heading>
+          <Slide transition={["slide"]} notes="You can even put notes on your slide. How awesome is that?">
+          <Layout>
+            <Fill>
+              <Image src={assets.me_jpg} display="block" margin="0px auto 40px" height="293px"/>
+
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+
+            </Fill>
+            <Fill>
+              <Heading size={2} caps fit textColor="black" textFont="primary">
+                Who am I?
+              </Heading>
+
+              <Heading size={5} fit textColor="white" textFont="primary">
+                What have I worked on?
+              </Heading>
+              <Text textAlign="left">Hema, BCC, Wehkamp</Text>
+              <Text textAlign="left">Heineken, PON, Mammoet</Text>
+              <Text textAlign="left">SourceJS (core), NPM (docs), Webpack (docs), ...</Text>
+
+              <Heading size={5} fit textColor="white" textFont="primary" margin="40px auto 0">
+                What do I do now?
+              </Heading>
+              <Text textAlign="left">ING</Text>
+              <Text textAlign="left">Improving DX with webpack & Jest & Cypress</Text>
+            </Fill>
+          </Layout>
+
           </Slide>
           <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
             <CodePane
               lang="jsx"
-              source={require("raw-loader!../assets/deck.example")}
+              source={assets.deck_example}
               margin="20px auto"
             />
           </Slide>
-          <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
+          <Slide transition={["slide"]} bgImage={assets.city_jpg} bgDarken={0.75}>
             <Appear fid="1">
               <Heading size={1} caps fit textColor="primary">
                 Full Width
@@ -127,7 +158,7 @@ export default class Presentation extends React.Component {
             </Heading>
             <Markdown>
               {`
-![Markdown Logo](${images.markdown.replace("/", "")})
+![Markdown Logo](${assets.markdown_png})
 
 You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
 * Lists too!
@@ -164,7 +195,7 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
             <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
               Made with love in Seattle by
             </Heading>
-            <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
+            <Link href="http://www.formidablelabs.com"><Image width="100%" src={assets.formidable_svg}/></Link>
           </Slide>
         </Deck>
       </Spectacle>

@@ -68,6 +68,10 @@ module.exports = {
       query: {
         mimetype: 'image/jpg'
       }
+    }, {
+      test: /\.(?!png|svg|gif|jpg).*$/,
+      loader: 'raw-loader',
+      include: path.join(__dirname, 'assets')
     }]
   }
 };
