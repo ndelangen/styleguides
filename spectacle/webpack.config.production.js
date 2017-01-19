@@ -37,6 +37,10 @@ module.exports = {
     }, {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
+      include: [
+        __dirname,
+        path.join(__dirname, '..', 'components')
+      ],
       loader: "babel-loader",
     }, {
       test: /\.css$/,
@@ -44,6 +48,7 @@ module.exports = {
         { loader: 'style-loader' },
         { loader: 'raw-loader' },
       ],
+      include: path.join(__dirname, '..') // !!! THIS DOES INCLUDE NODE_MODULES !!!
     }, {
       test: /\.(png|jpg|gif)$/,
       loader: "url-loader",
@@ -57,6 +62,10 @@ module.exports = {
         limit: 10000,
         mimetype: 'image/svg+xml'
       }
+    }, {
+      test: /\.(?!png|svg|gif|jpg).*$/,
+      loader: 'raw-loader',
+      include: path.join(__dirname, 'assets')
     }]
   }
 };
