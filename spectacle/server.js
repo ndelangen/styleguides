@@ -51,7 +51,8 @@ const server = new Promise((resolve, reject) => {
 const compilation = new Promise((resolve, reject) => {
   devMiddleware.waitUntilValid(results => {
     if (results.hasErrors()) {
-      reject(results);
+      console.log(results.compilation.errors);
+      reject(results.compilation);
     } else {
       resolve(results);
     }
@@ -74,7 +75,12 @@ ready.then(([server, compilation]) => {
 
     spawn('open', [address]);
   }, ([server, compilation]) => {
-    console.debug('📦 webpack ', [].join(compilation.errors).join(compilation.warnings));
-    console.debug('🌎 express ', server);
-    exit;
+    console.log(arguments);
+    console.error('📦 webpack ', [].concat(compilation.errors).concat(compilation.warnings));
+    console.error('🌎 express ', server);
+    process.exit();
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exit();
   });

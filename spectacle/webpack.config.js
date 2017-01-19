@@ -4,6 +4,8 @@ const path = require('path');
 const webpack = require('webpack');
 const GaugePlugin = require('gauge-webpack-plugin');
 
+console.log('dirname', __dirname);
+
 module.exports = {
   devtool: 'source-map',
   entry: [
@@ -31,6 +33,10 @@ module.exports = {
     }, {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
+      include: [
+        __dirname,
+        path.join(__dirname, '..', 'components')
+      ],
       loader: 'babel-loader',
     }, {
       test: /\.css$/,
@@ -38,7 +44,7 @@ module.exports = {
         { loader: 'style-loader' },
         { loader: 'raw-loader' },
       ],
-      include: __dirname
+      include: path.join(__dirname, '..') // !!! THIS DOES INCLUDE NODE_MODULES !!!
     }, {
       test: /\.svg$/,
       loader: 'url-loader',
