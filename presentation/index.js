@@ -17,6 +17,7 @@ import {
   List,
   Markdown,
   Quote,
+  S,
   Slide,
   Spectacle,
   Text
@@ -73,17 +74,29 @@ export default class Presentation extends React.Component {
           <Slide transition={["slide"]} notes="You can even put notes on your slide. How awesome is that?">
           <Layout>
             <Fill>
-              <Image src={assets.me_jpg} display="block" margin="0px auto 40px" height="293px"/>
+              <div style={{ marginRight: "40px"}}>
+                <Image src={assets.me_jpg} display="block" margin="0px auto 40px" width="100%"/>
 
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
-              <Image src={assets.formidable_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                <div style={{ display: "inline-block"}}>
+                  <Image src={assets.js_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                  <Image src={assets.git_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                </div>
+                <div style={{ display: "inline-block"}}>
+                  <Image src={assets.webpack_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                  <Image src={assets.babel_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                  <Image src={assets.grunt_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                  <Image src={assets.gulp_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                </div>
+                <Image src={assets.jest_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                <Image src={assets.cypress_png} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                |
+                <Image src={assets.angularjs_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                <Image src={assets.react_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                |
+                <Image src={assets.postcss_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                <Image src={assets.sass_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+                <Image src={assets.styledcomponents_svg} display="inline-block" margin="0px 10px 10px 0" height="32px"/>
+              </div>
 
             </Fill>
             <Fill>
