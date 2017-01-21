@@ -56,6 +56,7 @@ module.exports = {
       loader: 'url-loader',
       include: path.join(__dirname, 'assets'),
       query: {
+        limit: 8192,
         mimetype: 'image/png'
       }
     }, {
@@ -63,6 +64,7 @@ module.exports = {
       loader: 'url-loader',
       include: path.join(__dirname, 'assets'),
       query: {
+        limit: 8192,
         mimetype: 'image/gif'
       }
     }, {
@@ -70,6 +72,7 @@ module.exports = {
       loader: 'url-loader',
       include: path.join(__dirname, 'assets'),
       query: {
+        limit: 8192,
         mimetype: 'image/jpg'
       }
     }, {

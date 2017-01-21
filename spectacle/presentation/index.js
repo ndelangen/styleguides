@@ -7,16 +7,11 @@ import {
   Appear,
   BlockQuote,
   Cite,
-  CodePane,
   Deck,
   Fill,
   Heading,
   Image,
   Layout,
-  Link,
-  ListItem,
-  List,
-  S,
   Quote,
   Slide,
   Spectacle,
@@ -30,7 +25,7 @@ import preloader from "spectacle/lib/utils/preloader";
 import createTheme from "spectacle/lib/themes/default";
 
 // Import custom component
-import Interactive from "../../components/dummy/interactive";
+// import Interactive from "../../components/dummy/interactive";
 
 // Require CSS
 require("normalize.css");
@@ -93,18 +88,26 @@ const Li = styled.li`
   }
 `;
 
+const Iframe = styled.iframe`
+  width: calc(100vw);
+  position: relative;
+  height: calc(100vh - 107px);
+  border: 0;
+  margin-top: -22px;
+`;
+
 const Important = styled.span`
   color: white;
 `;
 
-const RoundedCorners_Outer = styled.div`
+const RoundedCornersOuter = styled.div`
   border-radius: 10px;
   overflow: hidden;
 `;
-const RoundedCorners_Inner = styled.div`
+const RoundedCornersInner = styled.div`
   margin: -10px;
 `;
-const RoundedCorners = ({ children }) => <RoundedCorners_Outer><RoundedCorners_Inner>{children}</RoundedCorners_Inner></RoundedCorners_Outer>;
+const RoundedCorners = ({ children }) => <RoundedCornersOuter><RoundedCornersInner>{children}</RoundedCornersInner></RoundedCornersOuter>;
 
 export default class Presentation extends React.Component {
   render() {
@@ -182,7 +185,7 @@ export default class Presentation extends React.Component {
                 </Fill>
               </Layout>
             </Slide>
-            <Slide transition={["slide"]} bgImage={assets.city_jpg} bgDarken={0.75}>
+            <Slide transition={["slide"]} bgImage={assets.startline_jpg} bgDarken={0.75}>
               <Heading size={5} caps fit textColor="tertiary">
                 before we begin..
               </Heading>
@@ -197,7 +200,7 @@ export default class Presentation extends React.Component {
                 </Heading>
               </Appear>
             </Slide>
-            <Slide transition={["slide"]} bgImage={assets.city_jpg} bgDarken={0.75}>
+            <Slide transition={["slide"]} bgImage={assets.notebook_jpg} bgDarken={0.75}>
               <Heading size={5} caps fit textColor="tertiary">
                 Naming things.
               </Heading>
@@ -211,7 +214,7 @@ export default class Presentation extends React.Component {
                   Brand Styleguide, Code Styleguide, Design Styleguide
                 </Heading>
             </Slide>
-            <Slide transition={["slide"]} bgImage={assets.city_jpg} bgDarken={0.75}>
+            <Slide transition={["slide"]} bgImage={assets.library_jpg} bgDarken={0.75}>
               <Heading size={1} caps fit textColor="primary">
                 So.. styleguides
               </Heading>
@@ -265,7 +268,7 @@ export default class Presentation extends React.Component {
                 <Cite>person behind a keyboard</Cite>
               </BlockQuote>
             </Slide>
-            <Slide transition={["slide"]} bgImage={assets.city_jpg} bgDarken={0.75}>
+            <Slide transition={["slide"]} bgImage={assets.architecture1_jpg} bgDarken={0.75}>
               <Heading size={1} caps fit textColor="primary">
                 So.. styleguides
               </Heading>
@@ -275,13 +278,13 @@ export default class Presentation extends React.Component {
                 </Heading>
                 <Heading size={1} caps fit textColor="primary">
                   <Appear><span>Documentation&nbsp;&nbsp;&nbsp;</span></Appear>
-                  <Appear><span>Tests&nbsp;&nbsp;&nbsp;</span></Appear>
-                  <Appear><span>Dev environment</span></Appear>
+                  <Appear><span>∙&nbsp;&nbsp;Tests&nbsp;&nbsp;&nbsp;</span></Appear>
+                  <Appear><span>∙&nbsp;&nbsp;Dev environment</span></Appear>
                 </Heading>
                 <Heading size={1} caps fit textColor="white">
                   <Appear><span>Early feedback&nbsp;&nbsp;</span></Appear>
-                  <Appear><span>Accept environment&nbsp;&nbsp;&nbsp;</span></Appear>
-                  <Appear><span>Recruitment</span></Appear>
+                  <Appear><span>∙&nbsp;&nbsp;Accept environment&nbsp;&nbsp;&nbsp;</span></Appear>
+                  <Appear><span>∙&nbsp;&nbsp;Recruitment</span></Appear>
                 </Heading></div>
               </Appear>
             </Slide>
@@ -348,12 +351,88 @@ export default class Presentation extends React.Component {
               </BlockQuote>
             </Slide>
 
-            <Slide transition={["slide", "spin"]} bgColor="primary">
+            <Slide bgColor="transparent">
               <Heading caps fit size={1} textColor="tertiary">
-                Smooth
+                Let's build a styleguide
               </Heading>
               <Heading caps fit size={1} textColor="secondary">
-                Combinable Transitions
+                How hard can it be?
+              </Heading>
+            </Slide>
+
+            <Slide transition={["slide"]} bgImage={assets.checklist_jpg} bgDarken={0.75}>
+              <Heading size={1} caps fit textColor="primary" margin={"0 0 30px 0"}>
+                What features do we want?
+              </Heading>
+              <Heading size={1} caps fit textColor="tertiary">
+                <Appear><span>Display in isolation&nbsp;&nbsp;</span></Appear>
+                <Appear><span>∙&nbsp;&nbsp;Responsive utils</span></Appear>
+              </Heading>
+              <Heading size={1} caps fit textColor="primary">
+                <Appear><span>Search&nbsp;&nbsp;</span></Appear>
+                <Appear><span>∙&nbsp;&nbsp;Categorisation</span></Appear>
+              </Heading>
+            </Slide>
+
+            <Slide transition={["slide"]} bgImage={assets.present_jpg} bgDarken={0.75}>
+              <Heading size={1} caps fit textColor="primary" margin={"0 0 30px 0"}>
+                We want more !
+              </Heading>
+              <Heading size={1} caps fit textColor="tertiary">
+                <Appear><span>Easy to add examples&nbsp;&nbsp;</span></Appear>
+                <Appear><span>∙&nbsp;&nbsp;Tweak data and state</span></Appear>
+              </Heading>
+              <Heading size={1} caps fit textColor="primary">
+                <Appear><span>Reload on save&nbsp;&nbsp;</span></Appear>
+                <Appear><span>∙&nbsp;&nbsp;Hot Module Replacement</span></Appear>
+              </Heading>
+              <Heading size={1} caps fit textColor="tertiary">
+                <Appear><span>Support the JS tooling you're using</span></Appear>
+              </Heading>
+            </Slide>
+
+            <Slide transition={["slide"]} bgImage={assets.cake_jpg} bgDarken={0.75}>
+              <Heading size={1} caps fit textColor="primary" margin={"0 0 30px 0"}>
+                We want MOOAAR !!
+              </Heading>
+              <Heading size={1} caps fit textColor="tertiary">
+                <Appear><span>Generate to static&nbsp;&nbsp;</span></Appear>
+                <Appear><span>∙&nbsp;&nbsp;Good performance at scale</span></Appear>
+              </Heading>
+              <Heading size={1} caps fit textColor="primary">
+                <Appear><span>Easy to add / write extentions & middleware</span></Appear>
+              </Heading>
+            </Slide>
+
+            <Slide bgColor="transparent">
+              <Heading caps fit size={1} textColor="tertiary">
+                Let's use a styleguide platform / generator
+              </Heading>
+              <Heading caps fit size={1} textColor="secondary">
+                How hard can it be?
+              </Heading>
+            </Slide>
+
+            <Slide bgColor="transparent">
+              <Heading caps fit size={1} textColor="tertiary">
+                107 different solution for 1 problem
+              </Heading>
+              <Image src={assets.githubstyleguidegenerators_png} display="block" style={{maxHeight: "80vh", maxWidth: "100%"}} />
+            </Slide>
+
+            <Slide bgImage={assets.choice_jpg} transition={["slide"]} bgDarken={0.75}>
+              <Heading caps fit size={1} textColor="tertiary">
+                Let's just take a look at a few
+              </Heading>
+              <Heading caps fit size={1} textColor="primary">
+                Find out if it fits your team and product
+              </Heading>
+            </Slide>
+
+            <Slide bgColor="secondary" className="foo" maxWidth={"calc(100vw)"} maxHeight={"calc(100vh)"} margin={"0"}>
+              <Iframe src="http://sourcejs.com" />
+              <Heading caps size={6} textColor="tertiary">
+                SourceJS.com
               </Heading>
             </Slide>
 
