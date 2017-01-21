@@ -7,7 +7,8 @@
     "presentation:build": "cd spectacle && cross-env NODE_ENV=production webpack --config webpack.config.production.js",
     "presentation:deploy": "cd spectacle && npm run presentation:clean & npm run presentation:build && surge -p .",
     "presentation:start": "cd spectacle && cross-env NODE_ENV=development node server.js",
-    "lint": "eslint --ext .js,.jsx . --fix"
+    "sourcejs-showcase:start": "cd sourcejs-showcase && cross-env NODE_ENV=production npm run start",
+    "lint": "eslint ./ --fix"
   },
   "author": "",
   "license": "MIT",
@@ -33,10 +34,6 @@
     "chalk": "^1.1.3",
     "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
-    "eslint": "^3.13.1",
-    "eslint-config-defaults": "^9.0.0",
-    "eslint-plugin-filenames": "^1.1.0",
-    "eslint-plugin-react": "^6.9.0",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
@@ -53,5 +50,13 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.15.0"
+  },
+  "optionalDependencies": {
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-postcss": "^2.0.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1"
   }
 }

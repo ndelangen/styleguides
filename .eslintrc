@@ -1,11 +1,25 @@
----
-"extends":
-  - "eslint-config-defaults/configurations/walmart/es6-react"
-
-"rules":
-  "indent": [2, 2, {"SwitchCase": 1}]
-  "max-len": 0
-
-"env":
-  "browser": true,
-  "node": true
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "max-len": ["warn", 120],
+    "no-param-reassign": ["error", { "props": false }],
+    "no-use-before-define": ["error", { "functions": false }],
+    "arrow-body-style": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "document": false,
+    "jest": true,
+    "expect": true
+  }
+}
