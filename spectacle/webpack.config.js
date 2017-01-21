@@ -2,7 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const GaugePlugin = require('gauge-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -17,7 +16,6 @@ module.exports = {
     publicPath: '/dist/'
   },
   plugins: [
-    // GaugePlugin('webpack dev build'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],

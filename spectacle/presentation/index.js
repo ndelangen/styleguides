@@ -1,6 +1,6 @@
 // Import React
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // Import Spectacle Core tags
 import {
@@ -15,6 +15,7 @@ import {
   Quote,
   Slide,
   Spectacle,
+  Table,
   Text
 } from 'spectacle';
 
@@ -59,6 +60,24 @@ const Group = styled.div`
   padding: 0 10px;
 `;
 
+const Th = styled.th`
+  font-size: 1.8rem;
+  text-align: left;
+  padding: 10px 30px 10px 20px;
+`;
+const Tr = styled.tr`
+  &:nth-child(even) {
+    background-color: rgba(0,0,0,0.17);
+  }
+`;
+const Td = styled.td`
+  font-size: 1.8rem;
+  padding: 10px 10px 10px 20px;
+  &:first-child {
+    text-align: left;
+  }
+`;
+
 const Root = styled.div`
   position: absolute;
   height: 100%;
@@ -88,13 +107,57 @@ const Li = styled.li`
   }
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 const Iframe = styled.iframe`
   width: calc(100vw);
   position: relative;
   height: calc(100vh - 107px);
   border: 0;
   margin-top: -22px;
+  animation: ${fadeIn} .4s linear;
+  animation-delay: .3s;
+  background: white;
 `;
+
+const Button = styled.button`
+  border: 2px solid white;
+  display: inline-block;
+  background: transparent;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 30px;
+  font-size: 20px;
+`;
+class LazyIframe extends React.Component {
+  constructor(props) {
+    super(props);
+    const instance = this;
+
+    instance.state = {
+      display: false
+    };
+
+    instance.show = () => {
+      instance.setState({ display: true });
+    };
+  }
+  render() {
+    const { src } = this.props;
+    const { display } = this.state;
+    return display ? (
+      <Iframe src={src} />
+    ) : (
+      <Button title={src} onClick={this.show}>click to load</Button>
+    );
+  }
+}
 
 const Important = styled.span`
   color: white;
@@ -114,17 +177,11 @@ export default class Presentation extends React.Component {
     return (
       <Root>
         <Spectacle theme={theme}>
-          <Deck transition={['slide', 'spin']} transitionDuration={500} progress={'number'}>
+          <Deck transition={['slide', 'spin']} transitionDuration={800} progress={'number'}>
             <Slide bgColor="transparent">
-              <Heading size={1} fit caps lineHeight={1} textColor="black">
-                Styleguides
-              </Heading>
-              <Heading size={1} fit caps>
-                in a modern front-end
-              </Heading>
-              <Heading size={1} fit caps textColor="black">
-                What role does it have and how to set it up
-              </Heading>
+              <Heading size={1} fit caps lineHeight={1} textColor="black">Styleguides</Heading>
+              <Heading size={1} fit caps>in a modern front-end</Heading>
+              <Heading size={1} fit caps textColor="black">What role does it have and how to set it up</Heading>
             </Slide>
             <Slide
               bgColor="transparent"
@@ -134,9 +191,7 @@ export default class Presentation extends React.Component {
                 <Fill style={{ maxWidth: '40%' }}>
                   <div style={{ marginRight: '40px' }}>
                     <Image src={assets.me_jpg} display="block" width="100%" />
-                    <Heading size={6} fit textColor="black" textFont="primary" margin="0px auto 40px">
-                      Norbert de Langen
-                    </Heading>
+                    <Heading size={6} fit textColor="black" textFont="primary" margin="0px auto 40px">Norbert de Langen</Heading>
 
                     <Group>
                       <Image src={assets.js_svg} display="inline-block" margin="0px 10px 10px 0" height="32px" />
@@ -165,21 +220,15 @@ export default class Presentation extends React.Component {
                   </div>
                 </Fill>
                 <Fill>
-                  <Heading size={2} caps fit textColor="white" textFont="primary">
-                    Who am I?
-                  </Heading>
+                  <Heading size={2} caps fit textColor="white" textFont="primary">Who am I?</Heading>
 
-                  <Heading size={5} textColor="black" textFont="primary" textAlign="left">
-                    What have I worked on?
-                  </Heading>
+                  <Heading size={5} textColor="black" textFont="primary" textAlign="left">What have I worked on?</Heading>
                   <Text textAlign="left" textSize="2.2rem">Hema, BCC, Wehkamp</Text>
                   <Text textAlign="left" textSize="2.2rem">Heineken, PON, Mammoet</Text>
                   <Hr />
                   <Text textAlign="left" textSize="2.2rem">SourceJS (core), NPM (docs), Webpack (docs)...</Text>
 
-                  <Heading size={5} textColor="black" textFont="primary" margin="40px auto 0" textAlign="left">
-                    What do I do now?
-                  </Heading>
+                  <Heading size={5} textColor="black" textFont="primary" margin="40px auto 0" textAlign="left">What do I do now?</Heading>
                   <Text textAlign="left" textSize="2.2rem">ING - stockexchange webapplication</Text>
                   <Hr />
                   <Text textAlign="left" textSize="2.2rem">Improving DX with webpack & Jest & Cypress</Text>
@@ -187,45 +236,25 @@ export default class Presentation extends React.Component {
               </Layout>
             </Slide>
             <Slide transition={['slide']} bgImage={assets.startline_jpg} bgDarken={0.75}>
-              <Heading size={5} caps fit textColor="tertiary">
-                before we begin..
-              </Heading>
+              <Heading size={5} caps fit textColor="tertiary">before we begin..</Heading>
               <Appear>
-                <Heading size={1} caps fit textColor="primary">
-                  What's your interpretation of the word 'styleguide'?
-                </Heading>
+                <Heading size={1} caps fit textColor="primary">What&apos;s your interpretation of the word &apos;styleguide&apos;?</Heading>
               </Appear>
               <Appear>
-                <Heading size={1} caps fit textColor="primary">
-                  Who here has ever created one?
-                </Heading>
+                <Heading size={1} caps fit textColor="primary">Who here has ever created one?</Heading>
               </Appear>
             </Slide>
             <Slide transition={['slide']} bgImage={assets.notebook_jpg} bgDarken={0.75}>
-              <Heading size={5} caps fit textColor="tertiary">
-                Naming things.
-              </Heading>
-              <Heading size={1} fit textColor="primary">
-                <Important>What we ARE talking about:<br /></Important>
-                  UI Library, Pattern Library, Portfolio, UI Framework
-                </Heading>
+              <Heading size={5} caps fit textColor="tertiary">Naming things.</Heading>
+              <Heading size={1} fit textColor="primary"><Important>What we ARE talking about:<br /></Important>UI Library, Pattern Library, Portfolio, UI Framework</Heading>
               <Hr />
-              <Heading size={1} fit textColor="primary">
-                <Important>What we are NOT talking about:<br /></Important>
-                  Brand Styleguide, Code Styleguide, Design Styleguide
-                </Heading>
+              <Heading size={1} fit textColor="primary"><Important>What we are NOT talking about:<br /></Important>Brand Styleguide, Code Styleguide, Design Styleguide</Heading>
             </Slide>
             <Slide transition={['slide']} bgImage={assets.library_jpg} bgDarken={0.75}>
-              <Heading size={1} caps fit textColor="primary">
-                So.. styleguides
-              </Heading>
+              <Heading size={1} caps fit textColor="primary">So.. styleguides</Heading>
               <Appear><div>
-                <Heading size={1} caps fit textColor="tertiary">
-                  I can't just start talking about them
-                </Heading>
-                <Heading size={1} caps fit textColor="primary">
-                  We need context
-                </Heading></div>
+                <Heading size={1} caps fit textColor="tertiary">I can&apos;t just start talking about them</Heading>
+                <Heading size={1} caps fit textColor="primary">We need context</Heading></div>
               </Appear>
             </Slide>
             <Slide transition={['zoom', 'fade']} bgColor="transparent">
@@ -233,26 +262,18 @@ export default class Presentation extends React.Component {
               <RoundedCorners>
                 <Layout>
                   <Fill>
-                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>
-                      Code
-                    </Heading>
+                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>Code</Heading>
                   </Fill>
                   <Fill>
-                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>
-                      Deployment
-                    </Heading>
+                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>Deployment</Heading>
                   </Fill>
                 </Layout>
                 <Layout>
                   <Fill>
-                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>
-                      Documentation
-                    </Heading>
+                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>Documentation</Heading>
                   </Fill>
                   <Fill>
-                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>
-                      Tests
-                    </Heading>
+                    <Heading size={6} caps textColor="secondary" bgColor="white" margin={10} style={{ padding: '50px 20px' }}>Tests</Heading>
                   </Fill>
                 </Layout>
               </RoundedCorners>
@@ -270,13 +291,9 @@ export default class Presentation extends React.Component {
               </BlockQuote>
             </Slide>
             <Slide transition={['slide']} bgImage={assets.architecture1_jpg} bgDarken={0.75}>
-              <Heading size={1} caps fit textColor="primary">
-                So.. styleguides
-              </Heading>
+              <Heading size={1} caps fit textColor="primary">So.. styleguides</Heading>
               <Appear><div>
-                <Heading size={1} caps fit textColor="tertiary" margin={'0 0 10px 0'}>
-                  What purpose do they have?
-                </Heading>
+                <Heading size={1} caps fit textColor="tertiary" margin={'0 0 10px 0'}>What purpose do they have?</Heading>
                 <Heading size={1} caps fit textColor="primary">
                   <Appear><span>Documentation&nbsp;&nbsp;&nbsp;</span></Appear>
                   <Appear><span>∙&nbsp;&nbsp;Tests&nbsp;&nbsp;&nbsp;</span></Appear>
@@ -347,24 +364,18 @@ export default class Presentation extends React.Component {
 
             <Slide transition={['fade']} bgColor="rgba(0,0,0,0.4)">
               <BlockQuote>
-                <Heading size={5} textColor="primary">By crafting your components and their API's in isolation, the <Important>quality and reuse potential</Important> of your UI investment is dramatically improved. You will be falling into the <Important>"pit of success"</Important> conforming to best-practices that also make your job faster and easier, and importantly - <Important>more fun</Important>.</Heading>
+                <Heading size={5} textColor="primary">By crafting your components and their API&apos;s in isolation, the <Important>quality and reuse potential</Important> of your UI investment is dramatically improved. You will be falling into the <Important>&quot;pit of success&quot;</Important> conforming to best-practices that also make your job faster and easier, and importantly - <Important>more fun</Important>.</Heading>
                 <Cite>anonymous</Cite>
               </BlockQuote>
             </Slide>
 
             <Slide bgColor="transparent">
-              <Heading caps fit size={1} textColor="tertiary">
-                Let's build a styleguide
-              </Heading>
-              <Heading caps fit size={1} textColor="secondary">
-                How hard can it be?
-              </Heading>
+              <Heading caps fit size={1} textColor="tertiary">Let&apos;s build a styleguide</Heading>
+              <Heading caps fit size={1} textColor="secondary">How hard can it be?</Heading>
             </Slide>
 
             <Slide transition={['slide']} bgImage={assets.checklist_jpg} bgDarken={0.75}>
-              <Heading size={1} caps fit textColor="primary" margin={'0 0 30px 0'}>
-                What features do we want?
-              </Heading>
+              <Heading size={1} caps fit textColor="primary" margin={'0 0 30px 0'}>What features do we want?</Heading>
               <Heading size={1} caps fit textColor="tertiary">
                 <Appear><span>Display in isolation&nbsp;&nbsp;</span></Appear>
                 <Appear><span>∙&nbsp;&nbsp;Responsive utils</span></Appear>
@@ -376,9 +387,7 @@ export default class Presentation extends React.Component {
             </Slide>
 
             <Slide transition={['slide']} bgImage={assets.present_jpg} bgDarken={0.75}>
-              <Heading size={1} caps fit textColor="primary" margin={'0 0 30px 0'}>
-                We want more !
-              </Heading>
+              <Heading size={1} caps fit textColor="primary" margin={'0 0 30px 0'}>We want more !</Heading>
               <Heading size={1} caps fit textColor="tertiary">
                 <Appear><span>Easy to add examples&nbsp;&nbsp;</span></Appear>
                 <Appear><span>∙&nbsp;&nbsp;Tweak data and state</span></Appear>
@@ -388,14 +397,12 @@ export default class Presentation extends React.Component {
                 <Appear><span>∙&nbsp;&nbsp;Hot Module Replacement</span></Appear>
               </Heading>
               <Heading size={1} caps fit textColor="tertiary">
-                <Appear><span>Support the JS tooling you're using</span></Appear>
+                <Appear><span>Support the JS tooling you&apos;re using</span></Appear>
               </Heading>
             </Slide>
 
             <Slide transition={['slide']} bgImage={assets.cake_jpg} bgDarken={0.75}>
-              <Heading size={1} caps fit textColor="primary" margin={'0 0 30px 0'}>
-                We want MOOAAR !!
-              </Heading>
+              <Heading size={1} caps fit textColor="primary" margin={'0 0 30px 0'}>We want MOOAAR !!</Heading>
               <Heading size={1} caps fit textColor="tertiary">
                 <Appear><span>Generate to static&nbsp;&nbsp;</span></Appear>
                 <Appear><span>∙&nbsp;&nbsp;Good performance at scale</span></Appear>
@@ -406,37 +413,136 @@ export default class Presentation extends React.Component {
             </Slide>
 
             <Slide bgColor="transparent">
-              <Heading caps fit size={1} textColor="tertiary">
-                Let's use a styleguide platform / generator
-              </Heading>
-              <Heading caps fit size={1} textColor="secondary">
-                How hard can it be?
-              </Heading>
+              <Heading caps fit size={1} textColor="tertiary">Let&apos;s use a styleguide platform / generator</Heading>
+              <Heading caps fit size={1} textColor="secondary">How hard can it be?</Heading>
             </Slide>
 
             <Slide bgColor="transparent">
-              <Heading caps fit size={1} textColor="tertiary">
-                107 different solution for 1 problem
-              </Heading>
+              <Heading caps fit size={1} textColor="tertiary">107 different solution for 1 problem</Heading>
               <Image src={assets.githubstyleguidegenerators_png} display="block" style={{ maxHeight: '80vh', maxWidth: '100%' }} />
             </Slide>
 
             <Slide bgImage={assets.choice_jpg} transition={['slide']} bgDarken={0.75}>
-              <Heading caps fit size={1} textColor="tertiary">
-                Let's just take a look at a few
-              </Heading>
-              <Heading caps fit size={1} textColor="primary">
-                Find out if it fits your team and product
-              </Heading>
+              <Heading caps fit size={1} textColor="tertiary">Let&apos;s just take a look at a few</Heading>
+              <Heading caps fit size={1} textColor="primary">Find out if it fits your team and product</Heading>
             </Slide>
 
-            <Slide bgColor="secondary" className="foo" maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
-              <Iframe src="http://sourcejs.com" />
-              <Heading caps size={6} textColor="tertiary">
-                SourceJS.com
-              </Heading>
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <Heading size={1} textColor="tertiary">SourceJS</Heading>
+              <Heading size={6} textColor="tertiary">Living Styleguide Platform</Heading>
+              <Heading size={6} textColor="secondary">SourceJS.com</Heading>
             </Slide>
 
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <LazyIframe src="http://localhost:8080" />
+              <Heading caps size={6} textColor="tertiary">SourceJS - showcase</Heading>
+            </Slide>
+
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <Heading size={1} textColor="tertiary">React Style Guide</Heading>
+              <Heading size={6} textColor="secondary">ow.ly/Ucqn30007ig</Heading>
+            </Slide>
+
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <LazyIframe src="http://pocotan001.github.io/react-styleguide-generator/#!/Buttons" />
+              <Heading caps size={6} textColor="tertiary">React Style Guide - showcase</Heading>
+            </Slide>
+
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <Heading size={1} textColor="tertiary">React StyleGuidist</Heading>
+              <Heading size={6} textColor="secondary">ow.ly/Z2ux30007an</Heading>
+            </Slide>
+
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <LazyIframe src="http://react-styleguidist.js.org/" />
+              <Heading caps size={6} textColor="tertiary">React StyleGuidist - showcase</Heading>
+            </Slide>
+
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <Heading size={1} textColor="tertiary">React Storybook</Heading>
+              <Heading size={6} textColor="secondary">ow.ly/t8VC300075n</Heading>
+            </Slide>
+
+            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+              <LazyIframe src="http://necolas.github.io/react-native-web/storybook/?selectedKind=Components&selectedStory=ActivityIndicator&full=0&down=1&left=1&panelRight=1&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel" />
+              <Heading caps size={6} textColor="tertiary">React Storybook - showcase</Heading>
+            </Slide>
+
+            <Slide bgColor="transparent" maxWidth={'calc(100vw - 200px)'} maxHeight={'calc(100vh - 200px)'} margin={'0'}>
+              <RoundedCorners>
+                <Table bgColor="tertiary" style={{ margin: '10px', borderCollapse: 'collapse' }}>
+                  <Tr>
+                    <Th />
+                    <Th>SourceJS</Th>
+                    <Th>React Style Guide</Th>
+                    <Th>React StyleGuidist</Th>
+                    <Th>React Storybook</Th>
+                  </Tr>
+                  <Tr>
+                    <Td>Documentation</Td>
+                    <Td>🏆</Td>
+                    <Td>✅</Td>
+                    <Td>😕</Td>
+                    <Td>😕</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Components</Td>
+                    <Td>✅</Td>
+                    <Td>✅</Td>
+                    <Td>✅</Td>
+                    <Td>🏆</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Organisation</Td>
+                    <Td>🏆</Td>
+                    <Td>😕</Td>
+                    <Td>😕</Td>
+                    <Td>✅</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Technology Freedom</Td>
+                    <Td>✅</Td>
+                    <Td>❌</Td>
+                    <Td>❌</Td>
+                    <Td>❌</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Dev Experience</Td>
+                    <Td>✅</Td>
+                    <Td>😕</Td>
+                    <Td>✅</Td>
+                    <Td>✅</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Extendable</Td>
+                    <Td>✅</Td>
+                    <Td>❌</Td>
+                    <Td>❌</Td>
+                    <Td>✅</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Deployable</Td>
+                    <Td>😕</Td>
+                    <Td>😕</Td>
+                    <Td>✅</Td>
+                    <Td>✅</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>Active / Hot</Td>
+                    <Td>😕</Td>
+                    <Td>😕</Td>
+                    <Td>✅</Td>
+                    <Td>🏆</Td>
+                  </Tr>
+                </Table>
+              </RoundedCorners>
+            </Slide>
+            <Slide bgColor="transparent">
+              <Heading size={5} caps fit textColor="tertiary">Code anyone?</Heading>
+              <Appear>
+                <Heading size={1} fit textColor="secondary"><Important>You pick a one,</Important> I&apos;ll start a styleguide from scratch</Heading>
+              </Appear>
+            </Slide>
           </Deck>
         </Spectacle>
       </Root>
