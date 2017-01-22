@@ -10,13 +10,17 @@
     "sourcejs-showcase:start": "cd sourcejs-showcase && cross-env NODE_ENV=development npm run start -- -p 8080",
     "sourcejs-react:start": "cd sourcejs-react && cross-env NODE_ENV=development npm run start -- -p 8081",
     "storybook:start": "cd storybook && cross-env NODE_ENV=development npm run storybook",
-    "lint": "eslint ./ --fix"
+    "lint": "eslint ./ --fix",
+    "start": "pm2 start npm --name \"sourcejs\" -- run sourcejs-react:start && pm2 start npm --name \"storybook\" -- run storybook:start && pm2 start npm --name \"presentation\" -- run presentation:start",
+    "stop": "pm2 stop all",
+    "monit": "pm2 list"
   },
   "author": "Norbert de Langen",
   "license": "MIT",
   "dependencies": {
     "@kadira/storybook": "^2.35.3",
     "normalize.css": "5.0.0",
+    "pm2": "^2.3.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "spectacle": "^1.2.5",
