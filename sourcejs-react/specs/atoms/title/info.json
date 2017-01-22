@@ -1,0 +1,10 @@
+{
+	"title": "Title / Heading",
+	"info": "Titles and Headings above texts",
+	"tag": ["heading", "title", "main", "intro"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

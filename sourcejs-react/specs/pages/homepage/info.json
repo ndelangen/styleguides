@@ -1,0 +1,10 @@
+{
+  "title": "Homepage Spec",
+	"info": "Spec description.",
+	"tag": ["tags", "for", "search"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

@@ -1,0 +1,10 @@
+{
+	"title": "Horizontal Rule",
+	"info": "Give a clear vertical seperation between 2 blocks.",
+	"tag": ["seperation", "separation", "blocks"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

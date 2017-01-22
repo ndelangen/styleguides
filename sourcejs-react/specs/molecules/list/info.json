@@ -1,0 +1,10 @@
+{
+  "title": "List",
+	"info": "The list of results",
+	"tag": ["list", "items", "result"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

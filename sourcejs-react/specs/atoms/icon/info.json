@@ -1,0 +1,10 @@
+{
+	"title": "Icon",
+	"info": "SVG and image, small images used to iconic purposes",
+	"tag": ["icon", "svg", "image"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

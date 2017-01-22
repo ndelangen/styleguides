@@ -1,0 +1,10 @@
+{
+  "title": "ListItem",
+	"info": "An item displayed in a list",
+	"tag": ["item", "list", "result"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

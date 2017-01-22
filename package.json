@@ -7,7 +7,8 @@
     "presentation:build": "cd spectacle && cross-env NODE_ENV=production webpack --config webpack.config.production.js",
     "presentation:deploy": "cd spectacle && npm run presentation:clean & npm run presentation:build && surge -p .",
     "presentation:start": "cd spectacle && cross-env NODE_ENV=development node server.js",
-    "sourcejs-showcase:start": "cd sourcejs-showcase && cross-env NODE_ENV=development npm run start",
+    "sourcejs-showcase:start": "cd sourcejs-showcase && cross-env NODE_ENV=development npm run start -- -p 8080",
+    "sourcejs-react:start": "cd sourcejs-react && cross-env NODE_ENV=development npm run start -- -p 8081",
     "lint": "eslint ./ --fix"
   },
   "author": "Norbert de Langen",

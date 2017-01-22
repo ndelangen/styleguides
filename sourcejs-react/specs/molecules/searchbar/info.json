@@ -1,0 +1,10 @@
+{
+  "title": "Searchbar",
+	"info": "A bar used for filtering / searching the list items",
+	"tag": ["filter", "search", "query", "items", "narrow", "list"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

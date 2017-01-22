@@ -1,0 +1,10 @@
+{
+	"title": "Button",
+	"info": "Spec description.",
+	"tag": ["click", "botton", "nav", "submit"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Header (Bar)",
+	"info": "The headerbar shown above on the screen",
+	"tag": ["header", "bar", "screen"],
+
+	"author": "Norbert de Langen",
+
+	"specFile": "readme.md",
+	"thumbnailPath": "design/thumbnail.png"
+}
