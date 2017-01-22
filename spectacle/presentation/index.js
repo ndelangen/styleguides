@@ -423,11 +423,11 @@ export default class Presentation extends React.Component {
             </Slide>
 
             <Slide bgImage={assets.choice_jpg} transition={['slide']} bgDarken={0.75}>
-              <Heading caps fit size={1} textColor="tertiary">Let&apos;s just take a look at a few</Heading>
+              <Heading caps fit size={1} textColor="tertiary">Just take a look at a few</Heading>
               <Heading caps fit size={1} textColor="primary">Find out if it fits your team and product</Heading>
             </Slide>
 
-            <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
+            {/* <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
               <Heading size={1} textColor="tertiary">SourceJS</Heading>
               <Heading size={6} textColor="tertiary">Living Styleguide Platform</Heading>
               <Heading size={6} textColor="secondary">SourceJS.com</Heading>
@@ -466,7 +466,7 @@ export default class Presentation extends React.Component {
             <Slide bgColor="transparent" transition={['fade']} maxWidth={'calc(100vw)'} maxHeight={'calc(100vh)'} margin={'0'}>
               <LazyIframe src="http://necolas.github.io/react-native-web/storybook/?selectedKind=Components&selectedStory=ActivityIndicator&full=0&down=1&left=1&panelRight=1&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel" />
               <Heading caps size={6} textColor="tertiary">React Storybook - showcase</Heading>
-            </Slide>
+            </Slide> */}
 
             <Slide bgColor="transparent" maxWidth={'calc(100vw - 200px)'} maxHeight={'calc(100vh - 200px)'} margin={'0'}>
               <RoundedCorners>
