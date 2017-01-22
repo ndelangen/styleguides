@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Heading } from 'spectacle';
 
 export default class Interactive extends Component {
   constructor() {
@@ -31,12 +30,10 @@ export default class Interactive extends Component {
       <div>
         {this.state.count < 5 ?
           <div>
-            <Heading size={5} textColor="black">
-            The button has been clicked {this.state.count} times
-          </Heading>
+            <h1>The button has been clicked {this.state.count} times</h1>
             <button style={styles} type="button" onClick={this.handleClick}>Click Me</button>
           </div> :
-          <Heading size={5} fit caps textColor="black">Easy there pal</Heading>
+          <h1>Easy there pal</h1>
         }
       </div>
     );
