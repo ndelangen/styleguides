@@ -1,5 +1,7 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+
+import { storiesOf } from '@kadira/storybook';
+import { withKnobs, text, select } from '@kadira/storybook-addon-knobs';
 
 import Component from './index';
 
@@ -7,9 +9,26 @@ import * as lengths from './data/lengthcases';
 import * as sizes from './css/size.css';
 import * as colors from './css/color.css';
 
+
+const getProps = () => ({
+  text: text('Text', 'HELLO BUTTON TEXT'),
+  color: select('Color', Object.keys(colors)),
+  size: select('Sizes', Object.keys(sizes))
+});
+
 storiesOf('Atom button', module)
-  .add('empty', () => (
-    <Component>HELLO TESTING</Component>
+  .addDecorator(withKnobs)
+  .addWithInfo('info', `
+    ## a heading
+
+    A paragraph with some text
+
+    Possible sizes:
+    ${Object.keys(sizes)}
+
+    Possible colors:
+    ${Object.keys(colors)}`, () => (
+      <Component size={getProps().size} color={getProps().color}>{getProps().text}</Component>
   ))
   .add('lengths', () => <div>
     {Object.values(lengths).map(string => <Component>{string}</Component>)}

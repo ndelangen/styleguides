@@ -12,7 +12,7 @@ class Button extends Component {
     /**
 		 * Button label.
 		 */
-    children: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
     color: PropTypes.oneOf(Object.keys(colorStyles)),
     size: PropTypes.oneOf(Object.keys(sizeStyles))
   }
