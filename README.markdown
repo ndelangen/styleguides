@@ -2,6 +2,8 @@
 
 ## A presentation and resources about modern styleguides platforms
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ndelangen/styleguides.svg)](https://greenkeeper.io/)
+
 The presentation and features platforms are mostly orientated towards react components.
 
 ## SourceJS
