@@ -191,7 +191,9 @@ export default class Presentation extends React.Component {
                 <Fill style={{ maxWidth: '40%' }}>
                   <div style={{ marginRight: '40px' }}>
                     <Image src={assets.me_jpg} display="block" width="100%" />
-                    <Heading size={6} fit textColor="black" textFont="primary" margin="0px auto 40px">Norbert de Langen</Heading>
+
+                    <Heading size={6} fit textColor="black" textFont="primary" margin="0px auto 10px">Norbert de Langen</Heading>
+                    <Image src={assets.xebia_svg} display="block" width="auto" style={{ margin: '10px auto 20px auto', maxWidth: '160px' }} />
 
                     <Group>
                       <Image src={assets.js_svg} display="inline-block" margin="0px 10px 10px 0" height="32px" />
@@ -539,9 +541,6 @@ export default class Presentation extends React.Component {
             </Slide>
             <Slide bgColor="transparent">
               <Heading size={5} caps fit textColor="tertiary">Code anyone?</Heading>
-              <Appear>
-                <Heading size={1} fit textColor="secondary"><Important>You pick a one,</Important> I&apos;ll start a styleguide from scratch</Heading>
-              </Appear>
             </Slide>
           </Deck>
         </Spectacle>

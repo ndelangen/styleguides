@@ -7,6 +7,7 @@
     "presentation:build": "cd spectacle && cross-env NODE_ENV=production webpack --config webpack.config.production.js",
     "presentation:deploy": "cd spectacle && npm run presentation:clean & npm run presentation:build && surge -p .",
     "presentation:start": "cd spectacle && cross-env NODE_ENV=development node server.js",
+    "presentation:ngrok": "ngrok http 3000",
     "sourcejs-showcase:install": "cd sourcejs-showcase && npm install",
     "sourcejs-showcase:start": "cd sourcejs-showcase && cross-env NODE_ENV=development npm run start -- -p 8080",
     "sourcejs-react:install": "cd sourcejs-react && npm install",
@@ -14,7 +15,7 @@
     "storybook:start": "cd storybook && cross-env NODE_ENV=development npm run storybook",
     "lint": "eslint ./ --fix",
     "start": "pm2 start npm --name \"sourcejs\" -- run sourcejs-react:start && pm2 start npm --name \"storybook\" -- run storybook:start && pm2 start npm --name \"presentation\" -- run presentation:start",
-    "stop": "pm2 stop all",
+    "stop": "pm2 stop all && pm2 delete all",
     "monit": "pm2 list"
   },
   "author": "Norbert de Langen",

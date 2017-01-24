@@ -61,7 +61,7 @@ const compilation = new Promise((resolve, reject) => {
 
 const ready = Promise.all([server, compilation]);
 
-ready.then(([server, compilation]) => {
+ready.then(([ server, compilation ]) => {
     const address = `http://localhost:${serverPort}`;
 
     console.log(chalk.gray('---'));
