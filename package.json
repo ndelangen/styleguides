@@ -7,7 +7,9 @@
     "presentation:build": "cd spectacle && cross-env NODE_ENV=production webpack --config webpack.config.production.js",
     "presentation:deploy": "cd spectacle && npm run presentation:clean & npm run presentation:build && surge -p .",
     "presentation:start": "cd spectacle && cross-env NODE_ENV=development node server.js",
+    "sourcejs-showcase:install": "cd sourcejs-showcase && npm install",
     "sourcejs-showcase:start": "cd sourcejs-showcase && cross-env NODE_ENV=development npm run start -- -p 8080",
+    "sourcejs-react:install": "cd sourcejs-react && npm install",
     "sourcejs-react:start": "cd sourcejs-react && cross-env NODE_ENV=development npm run start -- -p 8081",
     "storybook:start": "cd storybook && cross-env NODE_ENV=development npm run storybook",
     "lint": "eslint ./ --fix",
@@ -18,12 +20,16 @@
   "author": "Norbert de Langen",
   "license": "MIT",
   "dependencies": {
+    "@kadira/react-storybook-addon-info": "^3.3.0",
     "@kadira/storybook": "^2.35.3",
+    "@kadira/storybook-addon-knobs": "^1.7.1",
+    "@kadira/storybook-addon-options": "^1.0.1",
     "normalize.css": "5.0.0",
     "pm2": "^2.3.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "spectacle": "^1.2.5",
+    "storybook-addon-smart-knobs": "^0.2.1",
     "styled-components": "^1.3.1"
   },
   "devDependencies": {
